@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculus 2 Simplified Guide</title>
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+          tex: {
+            macros: {
+              sech: "\\operatorname{sech}",
+              csch: "\\operatorname{csch}"
+            }
+          }
+        };
+    </script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
@@ -431,18 +442,18 @@
             <h3>Basic Integration Rules</h3>
             
             <div class="formula">
-                Power Rule: \(\int x^n  dx = \frac{x^{n+1}}{n+1} + C\) (for \(n \neq -1\))
+                Power Rule: \(\int x^n \, dx = \frac{x^{n+1}}{n+1} + C\) (for \(n \neq -1\))
             </div>
             
             <div class="example">
-                <div class="example-header">Example: \(\int 3x^4  dx\)</div>
-                <div class="step">Constant Multiple Rule: \(3 \int x^4  dx\)</div>
+                <div class="example-header">Example: \(\int 3x^4 \, dx\)</div>
+                <div class="step">Constant Multiple Rule: \(3 \int x^4 \, dx\)</div>
                 <div class="step">Apply Power Rule: \(3 \cdot \frac{x^{5}}{5} + C\)</div>
                 <div class="step">Simplify: \(\frac{3}{5}x^5 + C\)</div>
             </div>
             
             <div class="formula">
-                Sum Rule: \(\int [f(x) + g(x)]  dx = \int f(x)  dx + \int g(x)  dx\)
+                Sum Rule: \(\int [f(x) + g(x)] \, dx = \int f(x) \, dx + \int g(x) \, dx\)
             </div>
         </div>
         
@@ -451,10 +462,10 @@
             <p>The reverse chain rule - used when you see a function and its derivative multiplied together.</p>
             
             <div class="example">
-                <div class="example-header">Example: \(\int (2x+1)^3  dx\)</div>
+                <div class="example-header">Example: \(\int (2x+1)^3 \, dx\)</div>
                 <div class="step">Let \(u = 2x + 1\)</div>
-                <div class="step">Then \(du = 2  dx\) → \(dx = \frac{du}{2}\)</div>
-                <div class="step">Substitute: \(\int u^3 \cdot \frac{du}{2} = \frac{1}{2} \int u^3  du\)</div>
+                <div class="step">Then \(du = 2 \, dx\) → \(dx = \frac{du}{2}\)</div>
+                <div class="step">Substitute: \(\int u^3 \cdot \frac{du}{2} = \frac{1}{2} \int u^3 \, du\)</div>
                 <div class="step">Integrate: \(\frac{1}{2} \cdot \frac{u^4}{4} + C = \frac{u^4}{8} + C\)</div>
                 <div class="step">Back-substitute: \(\frac{(2x+1)^4}{8} + C\)</div>
             </div>
@@ -496,7 +507,7 @@
             <p>The limit of Riemann sums as rectangles get infinitely thin:</p>
             
             <div class="formula">
-                \(\int_a^b f(x)  dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x\)
+                \(\int_a^b f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x\)
             </div>
             
             <div class="example">
@@ -506,7 +517,7 @@
                 <div class="step">Sum: \(\sum_{i=1}^n \left(\frac{i}{n}\right)^2 \cdot \frac{1}{n} = \frac{1}{n^3} \sum i^2\)</div>
                 <div class="step">Formula: \(\sum i^2 = \frac{n(n+1)(2n+1)}{6}\)</div>
                 <div class="step">Limit as \(n \to \infty\): \(\frac{1}{3}\)</div>
-                <div class="step">So \(\int_0^1 x^2  dx = \frac{1}{3}\)</div>
+                <div class="step">So \(\int_0^1 x^2 \, dx = \frac{1}{3}\)</div>
             </div>
         </div>
         
@@ -515,15 +526,15 @@
             <p>The bridge between derivatives and integrals:</p>
             
             <div class="formula">
-                Part 1: \(\frac{d}{dx} \int_a^x f(t)  dt = f(x)\)
+                Part 1: \(\frac{d}{dx} \int_a^x f(t) \, dt = f(x)\)
             </div>
             
             <div class="formula">
-                Part 2: \(\int_a^b f(x)  dx = F(b) - F(a)\) where \(F'(x) = f(x)\)
+                Part 2: \(\int_a^b f(x) \, dx = F(b) - F(a)\) where \(F'(x) = f(x)\)
             </div>
             
             <div class="example">
-                <div class="example-header">Example: \(\int_1^3 2x  dx\)</div>
+                <div class="example-header">Example: \(\int_1^3 2x \, dx\)</div>
                 <div class="step">Antiderivative of \(2x\) is \(x^2\)</div>
                 <div class="step">So \(F(3) - F(1) = 3^2 - 1^2 = 9 - 1 = 8\)</div>
             </div>
@@ -533,15 +544,15 @@
             <h3>Properties of Integrals</h3>
             
             <div class="formula">
-                \(\int_a^b [f(x) + g(x)]  dx = \int_a^b f(x)  dx + \int_a^b g(x)  dx\)
+                \(\int_a^b [f(x) + g(x)] \, dx = \int_a^b f(x) \, dx + \int_a^b g(x) \, dx\)
             </div>
             
             <div class="formula">
-                \(\int_a^b c f(x)  dx = c \int_a^b f(x)  dx\)
+                \(\int_a^b c f(x) \, dx = c \int_a^b f(x) \, dx\)
             </div>
             
             <div class="formula">
-                \(\int_a^b f(x)  dx = \int_a^c f(x)  dx + \int_c^b f(x)  dx\)
+                \(\int_a^b f(x) \, dx = \int_a^c f(x) \, dx + \int_c^b f(x) \, dx\)
             </div>
         </div>
     </div>
@@ -553,17 +564,17 @@
             <h3>Exponential Functions</h3>
             
             <div class="formula">
-                \(\int e^x  dx = e^x + C\)
+                \(\int e^x \, dx = e^x + C\)
             </div>
             
             <div class="formula">
-                \(\int a^x  dx = \frac{a^x}{\ln a} + C\)
+                \(\int a^x \, dx = \frac{a^x}{\ln a} + C\)
             </div>
             
             <div class="example">
-                <div class="example-header">Example: \(\int 2e^{3x}  dx\)</div>
-                <div class="step">Let \(u = 3x\), then \(du = 3  dx\) → \(dx = \frac{du}{3}\)</div>
-                <div class="step">Substitute: \(\int 2e^u \cdot \frac{du}{3} = \frac{2}{3} \int e^u  du\)</div>
+                <div class="example-header">Example: \(\int 2e^{3x} \, dx\)</div>
+                <div class="step">Let \(u = 3x\), then \(du = 3 \, dx\) → \(dx = \frac{du}{3}\)</div>
+                <div class="step">Substitute: \(\int 2e^u \cdot \frac{du}{3} = \frac{2}{3} \int e^u \, du\)</div>
                 <div class="step">Integrate: \(\frac{2}{3} e^u + C\)</div>
                 <div class="step">Back-substitute: \(\frac{2}{3} e^{3x} + C\)</div>
             </div>
@@ -573,18 +584,18 @@
             <h3>Logarithmic Functions</h3>
             
             <div class="formula">
-                \(\int \frac{1}{x}  dx = \ln |x| + C\)
+                \(\int \frac{1}{x} \, dx = \ln |x| + C\)
             </div>
             
             <div class="formula">
-                General Form: \(\int \frac{f'(x)}{f(x)}  dx = \ln |f(x)| + C\)
+                General Form: \(\int \frac{f'(x)}{f(x)} \, dx = \ln |f(x)| + C\)
             </div>
             
             <div class="example">
-                <div class="example-header">Example: \(\int \frac{3x^2}{x^3 + 1}  dx\)</div>
+                <div class="example-header">Example: \(\int \frac{3x^2}{x^3 + 1} \, dx\)</div>
                 <div class="step">Notice numerator is derivative of denominator</div>
-                <div class="step">Let \(u = x^3 + 1\), then \(du = 3x^2  dx\)</div>
-                <div class="step">Substitute: \(\int \frac{1}{u}  du\)</div>
+                <div class="step">Let \(u = x^3 + 1\), then \(du = 3x^2 \, dx\)</div>
+                <div class="step">Substitute: \(\int \frac{1}{u} \, du\)</div>
                 <div class="step">Integrate: \(\ln |u| + C\)</div>
                 <div class="step">Back-substitute: \(\ln |x^3 + 1| + C\)</div>
             </div>
@@ -598,21 +609,21 @@
             <h3>Basic Trigonometric Integrals</h3>
             
             <div class="formula">
-                \(\int \sin x  dx = -\cos x + C\)
+                \(\int \sin x \, dx = -\cos x + C\)
             </div>
             
             <div class="formula">
-                \(\int \cos x  dx = \sin x + C\)
+                \(\int \cos x \, dx = \sin x + C\)
             </div>
             
             <div class="formula">
-                \(\int \sec^2 x  dx = \tan x + C\)
+                \(\int \sec^2 x \, dx = \tan x + C\)
             </div>
             
             <div class="example">
-                <div class="example-header">Example: \(\int \sin(2x)  dx\)</div>
-                <div class="step">Let \(u = 2x\), then \(du = 2  dx\) → \(dx = \frac{du}{2}\)</div>
-                <div class="step">Substitute: \(\int \sin u \cdot \frac{du}{2} = \frac{1}{2} \int \sin u  du\)</div>
+                <div class="example-header">Example: \(\int \sin(2x) \, dx\)</div>
+                <div class="step">Let \(u = 2x\), then \(du = 2 \, dx\) → \(dx = \frac{du}{2}\)</div>
+                <div class="step">Substitute: \(\int \sin u \cdot \frac{du}{2} = \frac{1}{2} \int \sin u \, du\)</div>
                 <div class="step">Integrate: \(\frac{1}{2} (-\cos u) + C = -\frac{1}{2} \cos u + C\)</div>
                 <div class="step">Back-substitute: \(-\frac{1}{2} \cos(2x) + C\)</div>
             </div>
@@ -622,16 +633,16 @@
             <h3>Inverse Trigonometric Integrals</h3>
             
             <div class="formula">
-                \(\int \frac{1}{\sqrt{1-x^2}}  dx = \sin^{-1}x + C\)
+                \(\int \frac{1}{\sqrt{1-x^2}} \, dx = \sin^{-1}x + C\)
             </div>
             
             <div class="formula">
-                \(\int \frac{1}{1+x^2}  dx = \tan^{-1}x + C\)
+                \(\int \frac{1}{1+x^2} \, dx = \tan^{-1}x + C\)
             </div>
             
             <div class="example">
-                <div class="example-header">Example: \(\int \frac{1}{\sqrt{4-x^2}}  dx\)</div>
-                <div class="step">Rewrite: \(\int \frac{1}{\sqrt{2^2 - x^2}}  dx\)</div>
+                <div class="example-header">Example: \(\int \frac{1}{\sqrt{4-x^2}} \, dx\)</div>
+                <div class="step">Rewrite: \(\int \frac{1}{\sqrt{2^2 - x^2}} \, dx\)</div>
                 <div class="step">Apply formula: \(\sin^{-1}\left(\frac{x}{2}\right) + C\)</div>
             </div>
         </div>
@@ -660,18 +671,18 @@
             <h3>Hyperbolic Integrals</h3>
             
             <div class="formula">
-                \(\int \sinh x  dx = \cosh x + C\)
+                \(\int \sinh x \, dx = \cosh x + C\)
             </div>
             
             <div class="formula">
-                \(\int \cosh x  dx = \sinh x + C\)
+                \(\int \cosh x \, dx = \sinh x + C\)
             </div>
             
             <div class="example">
-                <div class="example-header">Example: \(\int \frac{\cosh x}{2 + 3\sinh x}  dx\)</div>
+                <div class="example-header">Example: \(\int \frac{\cosh x}{2 + 3\sinh x} \, dx\)</div>
                 <div class="step">Let \(u = 2 + 3\sinh x\)</div>
-                <div class="step">Then \(du = 3\cosh x  dx\) → \(\cosh x  dx = \frac{du}{3}\)</div>
-                <div class="step">Substitute: \(\int \frac{1}{u} \cdot \frac{du}{3} = \frac{1}{3} \int \frac{1}{u}  du\)</div>
+                <div class="step">Then \(du = 3\cosh x \, dx\) → \(\cosh x \, dx = \frac{du}{3}\)</div>
+                <div class="step">Substitute: \(\int \frac{1}{u} \cdot \frac{du}{3} = \frac{1}{3} \int \frac{1}{u} \, du\)</div>
                 <div class="step">Integrate: \(\frac{1}{3} \ln |u| + C\)</div>
                 <div class="step">Back-substitute: \(\frac{1}{3} \ln |2 + 3\sinh x| + C\)</div>
             </div>
@@ -685,11 +696,11 @@
             <h3>Area Under a Curve</h3>
             
             <div class="formula">
-                For curve above x-axis: \(\text{Area} = \int_a^b f(x)  dx\)
+                For curve above x-axis: \(\text{Area} = \int_a^b f(x) \, dx\)
             </div>
             
             <div class="formula">
-                For curve below x-axis: \(\text{Area} = \left| \int_a^b f(x)  dx \right|\)
+                For curve below x-axis: \(\text{Area} = \left| \int_a^b f(x) \, dx \right|\)
             </div>
             
             <div class="visual">
@@ -700,7 +711,7 @@
             
             <div class="example">
                 <div class="example-header">Example: Area under \(y = x^2 + 2\) from x=1 to x=2</div>
-                <div class="step">\(\text{Area} = \int_1^2 (x^2 + 2)  dx\)</div>
+                <div class="step">\(\text{Area} = \int_1^2 (x^2 + 2) \, dx\)</div>
                 <div class="step">\(= \left[ \frac{x^3}{3} + 2x \right]_1^2\)</div>
                 <div class="step">\(= \left( \frac{8}{3} + 4 \right) - \left( \frac{1}{3} + 2 \right) = \frac{13}{3}\)</div>
             </div>
@@ -710,7 +721,7 @@
             <h3>Area Between Curves</h3>
             
             <div class="formula">
-                \(\text{Area} = \int_a^b [f(x) - g(x)]  dx\) where \(f(x) \geq g(x)\)
+                \(\text{Area} = \int_a^b [f(x) - g(x)] \, dx\) where \(f(x) \geq g(x)\)
             </div>
             
             <div class="key-point">
@@ -720,7 +731,7 @@
             <div class="example">
                 <div class="example-header">Example: Area between \(y = e^x\) and \(y = x\) from x=0 to x=1</div>
                 <div class="step">\(e^x\) is above \(x\) in this interval</div>
-                <div class="step">\(\text{Area} = \int_0^1 (e^x - x)  dx\)</div>
+                <div class="step">\(\text{Area} = \int_0^1 (e^x - x) \, dx\)</div>
                 <div class="step">\(= \left[ e^x - \frac{x^2}{2} \right]_0^1\)</div>
                 <div class="step">\(= (e - 0.5) - (1 - 0) = e - 1.5 \approx 1.218\)</div>
             </div>
@@ -734,7 +745,7 @@
             <h3>The Formula</h3>
             
             <div class="formula">
-                \(\int u  dv = uv - \int v  du\)
+                \(\int u \, dv = uv - \int v \, du\)
             </div>
             
             <div class="key-point">
@@ -747,11 +758,11 @@
             <h3>Simple Case</h3>
             
             <div class="example">
-                <div class="example-header">Example: \(\int x \sin x  dx\)</div>
-                <div class="step">Choose: \(u = x\) (algebraic), \(dv = \sin x  dx\)</div>
+                <div class="example-header">Example: \(\int x \sin x \, dx\)</div>
+                <div class="step">Choose: \(u = x\) (algebraic), \(dv = \sin x \, dx\)</div>
                 <div class="step">Then: \(du = dx\), \(v = -\cos x\)</div>
-                <div class="step">Apply formula: \(x(-\cos x) - \int (-\cos x)  dx\)</div>
-                <div class="step">\(= -x \cos x + \int \cos x  dx\)</div>
+                <div class="step">Apply formula: \(x(-\cos x) - \int (-\cos x) \, dx\)</div>
+                <div class="step">\(= -x \cos x + \int \cos x \, dx\)</div>
                 <div class="step">\(= -x \cos x + \sin x + C\)</div>
             </div>
         </div>
@@ -760,11 +771,11 @@
             <h3>Repeated Application</h3>
             
             <div class="example">
-                <div class="example-header">Example: \(\int x^2 e^x  dx\)</div>
-                <div class="step">First: \(u = x^2\), \(dv = e^x  dx\) → \(du = 2x  dx\), \(v = e^x\)</div>
-                <div class="step">\(\int = x^2 e^x - \int 2x e^x  dx\)</div>
-                <div class="step">Second: \(u = 2x\), \(dv = e^x  dx\) → \(du = 2  dx\), \(v = e^x\)</div>
-                <div class="step">\(\int = x^2 e^x - \left[2x e^x - \int 2 e^x  dx\right]\)</div>
+                <div class="example-header">Example: \(\int x^2 e^x \, dx\)</div>
+                <div class="step">First: \(u = x^2\), \(dv = e^x \, dx\) → \(du = 2x \, dx\), \(v = e^x\)</div>
+                <div class="step">\(\int = x^2 e^x - \int 2x e^x \, dx\)</div>
+                <div class="step">Second: \(u = 2x\), \(dv = e^x \, dx\) → \(du = 2 \, dx\), \(v = e^x\)</div>
+                <div class="step">\(\int = x^2 e^x - \left[2x e^x - \int 2 e^x \, dx\right]\)</div>
                 <div class="step">\(= x^2 e^x - 2x e^x + 2e^x + C\)</div>
             </div>
         </div>
@@ -787,10 +798,10 @@
             <h3>Basic Example</h3>
             
             <div class="example">
-                <div class="example-header">Example: \(\int \frac{1}{\sqrt{9 - x^2}}  dx\)</div>
-                <div class="step">Let \(x = 3 \sin \theta\), then \(dx = 3 \cos \theta  d\theta\)</div>
+                <div class="example-header">Example: \(\int \frac{1}{\sqrt{9 - x^2}} \, dx\)</div>
+                <div class="step">Let \(x = 3 \sin \theta\), then \(dx = 3 \cos \theta \, d\theta\)</div>
                 <div class="step">\(\sqrt{9 - x^2} = \sqrt{9 - 9\sin^2 \theta} = 3 \cos \theta\)</div>
-                <div class="step">\(\int \frac{1}{3 \cos \theta} \cdot 3 \cos \theta  d\theta = \int 1  d\theta\)</div>
+                <div class="step">\(\int \frac{1}{3 \cos \theta} \cdot 3 \cos \theta \, d\theta = \int 1 \, d\theta\)</div>
                 <div class="step">\(= \theta + C = \sin^{-1}\left(\frac{x}{3}\right) + C\)</div>
             </div>
         </div>
@@ -799,12 +810,12 @@
             <h3>Harder Example</h3>
             
             <div class="example">
-                <div class="example-header">Example: \(\int \frac{x}{\sqrt{3 - 2x - x^2}}  dx\)</div>
+                <div class="example-header">Example: \(\int \frac{x}{\sqrt{3 - 2x - x^2}} \, dx\)</div>
                 <div class="step">Complete the square: \(3 - 2x - x^2 = 4 - (x+1)^2\)</div>
                 <div class="step">Let \(u = x + 1\), then \(du = dx\) and \(x = u-1\)</div>
-                <div class="step">\(\int \frac{u - 1}{\sqrt{4 - u^2}}  du\)</div>
-                <div class="step">Now let \(u = 2 \sin \theta\), \(du = 2 \cos \theta  d\theta\)</div>
-                <div class="step">After substitution: \(\int (2 \sin \theta - 1)  d\theta\)</div>
+                <div class="step">\(\int \frac{u - 1}{\sqrt{4 - u^2}} \, du\)</div>
+                <div class="step">Now let \(u = 2 \sin \theta\), \(du = 2 \cos \theta \, d\theta\)</div>
+                <div class="step">After substitution: \(\int (2 \sin \theta - 1) \, d\theta\)</div>
                 <div class="step">\(= -2 \cos \theta - \theta + C\)</div>
                 <div class="step">Back-substitute: \(-\sqrt{4 - u^2} - \sin^{-1}(u/2) + C\)</div>
                 <div class="step">\(= -\sqrt{3 - 2x - x^2} - \sin^{-1}\left(\frac{x+1}{2}\right) + C\)</div>
@@ -827,12 +838,12 @@
             <h3>Case 1: Distinct Linear Factors</h3>
             
             <div class="example">
-                <div class="example-header">Example: \(\int \frac{x+5}{x^2 + x - 2}  dx\)</div>
+                <div class="example-header">Example: \(\int \frac{x+5}{x^2 + x - 2} \, dx\)</div>
                 <div class="step">Factor denominator: \((x-1)(x+2)\)</div>
                 <div class="step">Set up: \(\frac{x+5}{(x-1)(x+2)} = \frac{A}{x-1} + \frac{B}{x+2}\)</div>
                 <div class="step">Multiply: \(x+5 = A(x+2) + B(x-1)\)</div>
                 <div class="step">Solve: A = 2, B = -1 (by plugging in x=1 and x=-2)</div>
-                <div class="step">\(\int \left( \frac{2}{x-1} - \frac{1}{x+2} \right) dx = 2 \ln|x-1| - \ln|x+2| + C\)</div>
+                <div class="step">\(\int \left( \frac{2}{x-1} - \frac{1}{x+2} \right) \, dx = 2 \ln|x-1| - \ln|x+2| + C\)</div>
             </div>
         </div>
         
@@ -840,11 +851,11 @@
             <h3>Case 2: Repeated Linear Factors</h3>
             
             <div class="example">
-                <div class="example-header">Example: \(\int \frac{4x}{(x-1)^2(x+1)}  dx\)</div>
+                <div class="example-header">Example: \(\int \frac{4x}{(x-1)^2(x+1)} \, dx\)</div>
                 <div class="step">Set up: \(\frac{4x}{(x-1)^2(x+1)} = \frac{A}{x-1} + \frac{B}{(x-1)^2} + \frac{C}{x+1}\)</div>
                 <div class="step">Multiply: \(4x = A(x-1)(x+1) + B(x+1) + C(x-1)^2\)</div>
                 <div class="step">Solve: A = 1, B = 2, C = -1</div>
-                <div class="step">\(\int \left( \frac{1}{x-1} + \frac{2}{(x-1)^2} - \frac{1}{x+1} \right) dx\)</div>
+                <div class="step">\(\int \left( \frac{1}{x-1} + \frac{2}{(x-1)^2} - \frac{1}{x+1} \right) \, dx\)</div>
                 <div class="step">\(= \ln|x-1| - \frac{2}{x-1} - \ln|x+1| + C\)</div>
             </div>
         </div>
@@ -873,14 +884,14 @@
             <p>Rotate a curve around an axis to create a solid. Each slice perpendicular to the axis is a disk.</p>
             
             <div class="formula">
-                \[V = \int_{a}^{b} \pi [r(x)]^2 dx\]
+                \[V = \int_{a}^{b} \pi [r(x)]^2 \, dx\]
             </div>
             
             <div class="example">
                 <div class="example-header">Example: Volume of solid from rotating y = √x around x-axis (0 to 1)</div>
                 <div class="step">Radius at any point x is r(x) = √x</div>
                 <div class="step">Area of disk: A(x) = π(√x)² = πx</div>
-                <div class="step">Volume: \( V = \int_{0}^{1} \pi x  dx = \pi \left[ \frac{x^2}{2} \right]_{0}^{1} = \frac{\pi}{2} \)</div>
+                <div class="step">Volume: \( V = \int_{0}^{1} \pi x \, dx = \pi \left[ \frac{x^2}{2} \right]_{0}^{1} = \frac{\pi}{2} \)</div>
             </div>
         </div>
         
@@ -889,7 +900,7 @@
             <p>When there's a hole in the middle, each slice is a washer (disk with hole).</p>
             
             <div class="formula">
-                \[V = \int_{a}^{b} \pi \left([R(x)]^2 - [r(x)]^2\right) dx\]
+                \[V = \int_{a}^{b} \pi \left([R(x)]^2 - [r(x)]^2\right) \, dx\]
             </div>
             
             <div class="example">
@@ -897,7 +908,7 @@
                 <div class="step">Outer radius: R(x) = x</div>
                 <div class="step">Inner radius: r(x) = x²</div>
                 <div class="step">Area: A(x) = π(x² - (x²)²) = π(x² - x⁴)</div>
-                <div class="step">Volume: \( V = \int_{0}^{1} \pi (x^2 - x^4) dx = \pi \left[ \frac{x^3}{3} - \frac{x^5}{5} \right]_{0}^{1} = \frac{2\pi}{15} \)</div>
+                <div class="step">Volume: \( V = \int_{0}^{1} \pi (x^2 - x^4) \, dx = \pi \left[ \frac{x^3}{3} - \frac{x^5}{5} \right]_{0}^{1} = \frac{2\pi}{15} \)</div>
             </div>
             
             <div class="visual">
@@ -914,7 +925,7 @@
             <p>For rotation around y-axis, use cylindrical shells instead of disks.</p>
             
             <div class="formula">
-                \[V = \int_{a}^{b} 2\pi x f(x)  dx\]
+                \[V = \int_{a}^{b} 2\pi x f(x) \, dx\]
             </div>
             
             <div class="key-point">
@@ -925,7 +936,7 @@
                 <div class="example-header">Example: Rotate y = x² around y-axis (0 to 2)</div>
                 <div class="step">Radius of shell: r = x</div>
                 <div class="step">Height of shell: h = x²</div>
-                <div class="step">Volume: \( V = \int_{0}^{2} 2\pi x (x^2)  dx = 2\pi \int_{0}^{2} x^3  dx = 2\pi \left[ \frac{x^4}{4} \right]_{0}^{2} = 8\pi \)</div>
+                <div class="step">Volume: \( V = \int_{0}^{2} 2\pi x (x^2) \, dx = 2\pi \int_{0}^{2} x^3 \, dx = 2\pi \left[ \frac{x^4}{4} \right]_{0}^{2} = 8\pi \)</div>
             </div>
             
             <div class="visual">
@@ -944,13 +955,13 @@
             <p>Length of a curve - like measuring a winding road with a ruler made of tiny straight segments.</p>
             
             <div class="formula">
-                \[L = \int_{a}^{b} \sqrt{1 + \left(\frac{dy}{dx}\right)^2}  dx\]
+                \[L = \int_{a}^{b} \sqrt{1 + \left(\frac{dy}{dx}\right)^2} \, dx\]
             </div>
             
             <div class="example">
                 <div class="example-header">Example: Find arc length of \(y = \frac{2}{3}x^{3/2}\) from x=0 to x=3</div>
                 <div class="step">Derivative: \( \frac{dy}{dx} = x^{1/2} = \sqrt{x} \)</div>
-                <div class="step">Set up: \( L = \int_{0}^{3} \sqrt{1 + (\sqrt{x})^2}  dx = \int_{0}^{3} \sqrt{1 + x}  dx \)</div>
+                <div class="step">Set up: \( L = \int_{0}^{3} \sqrt{1 + (\sqrt{x})^2} \, dx = \int_{0}^{3} \sqrt{1 + x} \, dx \)</div>
                 <div class="step">Integrate: \( \left[ \frac{2}{3}(1+x)^{3/2} \right]_0^3 = \frac{2}{3}(4^{3/2} - 1^{3/2}) = \frac{2}{3}(8-1) = \frac{14}{3} \)</div>
             </div>
             
@@ -968,14 +979,14 @@
             <p>Area created by rotating a curve around an axis - like a vase surface.</p>
             
             <div class="formula">
-                Rotate around x-axis: \[S = \int_{a}^{b} 2\pi y \sqrt{1 + \left(\frac{dy}{dx}\right)^2}  dx\]
+                Rotate around x-axis: \[S = \int_{a}^{b} 2\pi y \sqrt{1 + \left(\frac{dy}{dx}\right)^2} \, dx\]
             </div>
             
             <div class="example">
                 <div class="example-header">Example: Surface area of y = √x rotated around x-axis (0 to 1)</div>
                 <div class="step">dy/dx = 1/(2√x)</div>
-                <div class="step">Set up: \( S = \int_{0}^{1} 2\pi \sqrt{x} \sqrt{1 + \left(\frac{1}{2\sqrt{x}}\right)^2}  dx \)</div>
-                <div class="step">Simplify: \( S = \int_{0}^{1} 2\pi \sqrt{x} \sqrt{1 + \frac{1}{4x}} dx = \int_0^1 2\pi \sqrt{x+\frac{1}{4}} dx \)</div>
+                <div class="step">Set up: \( S = \int_{0}^{1} 2\pi \sqrt{x} \sqrt{1 + \left(\frac{1}{2\sqrt{x}}\right)^2} \, dx \)</div>
+                <div class="step">Simplify: \( S = \int_{0}^{1} 2\pi \sqrt{x} \sqrt{1 + \frac{1}{4x}} \, dx = \int_0^1 2\pi \sqrt{x+\frac{1}{4}} \, dx \)</div>
                 <div class="step">Solution: \( \frac{\pi}{6}(5\sqrt{5} - 1) \approx 5.33 \)</div>
             </div>
         </div>
@@ -985,13 +996,13 @@
             <p>Work = Force × Distance. For variable force, we integrate!</p>
             
             <div class="formula">
-                \[W = \int_{a}^{b} F(x)  dx\]
+                \[W = \int_{a}^{b} F(x) \, dx\]
             </div>
             
             <div class="example">
                 <div class="example-header">Example: Stretching a spring</div>
                 <div class="step">Hooke's Law: F(x) = kx (k is spring constant)</div>
-                <div class="step">Work to stretch from natural length (0) to b: \( W = \int_{0}^{b} kx  dx = \frac{1}{2}kb^2 \)</div>
+                <div class="step">Work to stretch from natural length (0) to b: \( W = \int_{0}^{b} kx \, dx = \frac{1}{2}kb^2 \)</div>
                 <div class="step">If k = 50 N/m, stretch 0.3m from rest:</div>
                 <div class="step">\( W = \frac{1}{2}(50)(0.3)^2 = 2.25 J \)</div>
             </div>
@@ -1028,13 +1039,13 @@
             <p>For a function z = f(x,y) over a region R in the xy-plane:</p>
             
             <div class="formula">
-                \[ \iint_R f(x,y)  dA = \text{Volume under the surface} \]
+                \[ \iint_R f(x,y) \, dA = \text{Volume under the surface} \]
             </div>
             
             <div class="example">
                 <div class="example-header">Example: Find volume under z = 2x + y over rectangle 0≤x≤2, 0≤y≤1</div>
-                <div class="step">Set up the double integral: \(\int_0^1 \int_0^2 (2x + y)  dx  dy\)</div>
-                <div class="step">First integrate w.r.t x: \(\int_0^1 \left[ x^2 + xy \right]_{x=0}^{x=2} dy = \int_0^1 (4 + 2y)  dy\)</div>
+                <div class="step">Set up the double integral: \(\int_0^1 \int_0^2 (2x + y) \, dx \, dy\)</div>
+                <div class="step">First integrate w.r.t x: \(\int_0^1 \left[ x^2 + xy \right]_{x=0}^{x=2} \, dy = \int_0^1 (4 + 2y) \, dy\)</div>
                 <div class="step">Now integrate w.r.t y: \(\left[ 4y + y^2 \right]_{0}^{1} = 4(1) + (1)^2 - 0 = 5\)</div>
                 <div class="step">Volume = 5 cubic units</div>
             </div>
@@ -1045,13 +1056,13 @@
             <p>You can often switch the order of integration to make calculations easier!</p>
             
             <div class="formula">
-                \[ \int_{x=a}^{b} \int_{y=c}^{d} f(x,y)  dy  dx = \int_{y=c}^{d} \int_{x=a}^{b} f(x,y)  dx  dy \]
+                \[ \int_{x=a}^{b} \int_{y=c}^{d} f(x,y) \, dy \, dx = \int_{y=c}^{d} \int_{x=a}^{b} f(x,y) \, dx \, dy \]
             </div>
             
             <div class="example">
-                <div class="example-header">Example: Evaluate \(\int_0^1 \int_0^2 xy^2  dx  dy\)</div>
-                <div class="step">Inner integral: \(\int_0^2 xy^2  dx = \left[ \frac{1}{2}x^2 y^2 \right]_{x=0}^{2} = \frac{1}{2}(4)y^2 - 0 = 2y^2\)</div>
-                <div class="step">Outer integral: \(\int_0^1 2y^2  dy = \left[ \frac{2}{3}y^3 \right]_0^1 = \frac{2}{3}\)</div>
+                <div class="example-header">Example: Evaluate \(\int_0^1 \int_0^2 xy^2 \, dx \, dy\)</div>
+                <div class="step">Inner integral: \(\int_0^2 xy^2 \, dx = \left[ \frac{1}{2}x^2 y^2 \right]_{x=0}^{2} = \frac{1}{2}(4)y^2 - 0 = 2y^2\)</div>
+                <div class="step">Outer integral: \(\int_0^1 2y^2 \, dy = \left[ \frac{2}{3}y^3 \right]_0^1 = \frac{2}{3}\)</div>
                 <div class="key-point">Notice we treated y as a constant when integrating w.r.t x.</div>
             </div>
         </div>
@@ -1061,14 +1072,14 @@
             <p>Triple integrals let us calculate properties in 3D space like mass, center of mass, and moments of inertia.</p>
             
             <div class="formula">
-                \[ \iiint_E f(x,y,z)  dV \]
+                \[ \iiint_E f(x,y,z) \, dV \]
             </div>
             
             <div class="example">
                 <div class="example-header">Example: Find volume of box 0≤x≤3, 0≤y≤2, 0≤z≤1 using triple integral</div>
-                <div class="step">Set up: \(\int_0^1 \int_0^2 \int_0^3  dx  dy  dz\)</div>
-                <div class="step">Integrate w.r.t x: \(\int_0^1 \int_0^2 [x]_0^3  dy  dz = \int_0^1 \int_0^2 3  dy  dz\)</div>
-                <div class="step">Integrate w.r.t y: \(\int_0^1 [3y]_0^2  dz = \int_0^1 6  dz\)</div>
+                <div class="step">Set up: \(\int_0^1 \int_0^2 \int_0^3 \, dx \, dy \, dz\)</div>
+                <div class="step">Integrate w.r.t x: \(\int_0^1 \int_0^2 [x]_0^3 \, dy \, dz = \int_0^1 \int_0^2 3 \, dy \, dz\)</div>
+                <div class="step">Integrate w.r.t y: \(\int_0^1 [3y]_0^2 \, dz = \int_0^1 6 \, dz\)</div>
                 <div class="step">Integrate w.r.t z: \([6z]_0^1 = 6\)</div>
                 <div class="step">Volume = 6 cubic units (matches length×width×height)</div>
             </div>
@@ -1229,43 +1240,43 @@
                 <tr>
                     <td>\(\sin^{-1}x\)</td>
                     <td>\(\frac{1}{\sqrt{1-x^2}}\)</td>
-                    <td>\(\int \frac{1}{\sqrt{a^2 - x^2}} dx = \sin^{-1}\left(\frac{x}{a}\right) + C\)</td>
+                    <td>\(\int \frac{1}{\sqrt{a^2 - x^2}} \, dx = \sin^{-1}\left(\frac{x}{a}\right) + C\)</td>
                 </tr>
                 <tr>
                     <td>\(\cos^{-1}x\)</td>
                     <td>\(-\frac{1}{\sqrt{1-x^2}}\)</td>
-                    <td>\(\int -\frac{1}{\sqrt{a^2 - x^2}} dx = \cos^{-1}\left(\frac{x}{a}\right) + C\)</td>
+                    <td>\(\int -\frac{1}{\sqrt{a^2 - x^2}} \, dx = \cos^{-1}\left(\frac{x}{a}\right) + C\)</td>
                 </tr>
                 <tr>
                     <td>\(\tan^{-1}x\)</td>
                     <td>\(\frac{1}{1+x^2}\)</td>
-                    <td>\(\int \frac{1}{a^2 + x^2} dx = \frac{1}{a} \tan^{-1}\left(\frac{x}{a}\right) + C\)</td>
+                    <td>\(\int \frac{1}{a^2 + x^2} \, dx = \frac{1}{a} \tan^{-1}\left(\frac{x}{a}\right) + C\)</td>
                 </tr>
                 <tr>
                     <td>\(\cot^{-1}x\)</td>
                     <td>\(-\frac{1}{1+x^2}\)</td>
-                    <td>\(\int -\frac{1}{a^2 + x^2} dx = \frac{1}{a} \cot^{-1}\left(\frac{x}{a}\right) + C\)</td>
+                    <td>\(\int -\frac{1}{a^2 + x^2} \, dx = \frac{1}{a} \cot^{-1}\left(\frac{x}{a}\right) + C\)</td>
                 </tr>
                 <tr>
                     <td>\(\sec^{-1}x\)</td>
                     <td>\(\frac{1}{|x|\sqrt{x^2-1}}\)</td>
-                    <td>\(\int \frac{1}{x\sqrt{x^2 - a^2}} dx = \frac{1}{a} \sec^{-1}\left|\frac{x}{a}\right| + C\)</td>
+                    <td>\(\int \frac{1}{x\sqrt{x^2 - a^2}} \, dx = \frac{1}{a} \sec^{-1}\left|\frac{x}{a}\right| + C\)</td>
                 </tr>
                 <tr>
                     <td>\(\csc^{-1}x\)</td>
                     <td>\(-\frac{1}{|x|\sqrt{x^2-1}}\)</td>
-                    <td>\(\int -\frac{1}{x\sqrt{x^2 - a^2}} dx = \frac{1}{a} \csc^{-1}\left|\frac{x}{a}\right| + C\)</td>
+                    <td>\(\int -\frac{1}{x\sqrt{x^2 - a^2}} \, dx = \frac{1}{a} \csc^{-1}\left|\frac{x}{a}\right| + C\)</td>
                 </tr>
                 <tr>
                     <td colspan="3">
                         <div class="formula" style="font-size: 1.0rem;">
-                            \(\int \frac{1}{\sqrt{x^2 + a^2}} dx = \ln\left|x + \sqrt{x^2 + a^2}\right| + C = \sinh^{-1}\left(\frac{x}{a}\right) + C\)
+                            \(\int \frac{1}{\sqrt{x^2 + a^2}} \, dx = \ln\left|x + \sqrt{x^2 + a^2}\right| + C = \sinh^{-1}\left(\frac{x}{a}\right) + C\)
                         </div>
                         <div class="formula" style="font-size: 1.0rem;">
-                            \(\int \frac{1}{\sqrt{x^2 - a^2}} dx = \ln\left|x + \sqrt{x^2 - a^2}\right| + C = \cosh^{-1}\left(\frac{x}{a}\right) + C\)
+                            \(\int \frac{1}{\sqrt{x^2 - a^2}} \, dx = \ln\left|x + \sqrt{x^2 - a^2}\right| + C = \cosh^{-1}\left(\frac{x}{a}\right) + C\)
                         </div>
                         <div class="formula" style="font-size: 1.0rem;">
-                            \(\int \frac{1}{a^2 - x^2} dx = \frac{1}{2a} \ln\left|\frac{a+x}{a-x}\right| + C = \frac{1}{a}\tanh^{-1}\left(\frac{x}{a}\right)+C\)
+                            \(\int \frac{1}{a^2 - x^2} \, dx = \frac{1}{2a} \ln\left|\frac{a+x}{a-x}\right| + C = \frac{1}{a}\tanh^{-1}\left(\frac{x}{a}\right)+C\)
                         </div>
                     </td>
                 </tr>
@@ -1287,39 +1298,39 @@
                     <th>Notes</th>
                 </tr>
                 <tr>
-                    <td>\(\int \sinh x  dx\)</td>
+                    <td>\(\int \sinh x \, dx\)</td>
                     <td>\(\cosh x + C\)</td>
                     <td>No sign change like trig version</td>
                 </tr>
                 <tr>
-                    <td>\(\int \cosh x  dx\)</td>
+                    <td>\(\int \cosh x \, dx\)</td>
                     <td>\(\sinh x + C\)</td>
-                    <td>Similar to \(\int \cos x  dx = \sin x + C\)</td>
+                    <td>Similar to \(\int \cos x \, dx = \sin x + C\)</td>
                 </tr>
                 <tr>
-                    <td>\(\int \tanh x  dx\)</td>
+                    <td>\(\int \tanh x \, dx\)</td>
                     <td>\(\ln(\cosh x) + C\)</td>
                     <td>u-sub with u = cosh x</td>
                 </tr>
                 <tr>
-                    <td>\(\int \coth x  dx\)</td>
+                    <td>\(\int \coth x \, dx\)</td>
                     <td>\(\ln|\sinh x| + C\)</td>
                     <td>For \(x \neq 0\)</td>
                 </tr>
                 <tr>
-                    <td>\(\int \sech x  dx\)</td>
+                    <td>\(\int \sech x \, dx\)</td>
                     <td>\(\tan^{-1}(\sinh x) + C\)</td>
                     <td>Or \(2\tan^{-1}(e^x) + C\)</td>
                 </tr>
                 <tr>
-                    <td>\(\int \csch x  dx\)</td>
-                    <td>\(\ln|\tanh \frac{x}{2}| + C\)</td>
+                    <td>\(\int \csch x \, dx\)</td>
+                    <td>\(\ln\left|\tanh \frac{x}{2}\right| + C\)</td>
                     <td>For \(x \neq 0\)</td>
                 </tr>
                 <tr>
-                    <td>\(\int \sech^2 x  dx\)</td>
+                    <td>\(\int \sech^2 x \, dx\)</td>
                     <td>\(\tanh x + C\)</td>
-                    <td>Similar to \(\int \sec^2 x  dx = \tan x + C\)</td>
+                    <td>Similar to \(\int \sec^2 x \, dx = \tan x + C\)</td>
                 </tr>
             </table>
             
