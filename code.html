@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus 2 Simplified Guide</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #34495e;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        
+        h3 {
+            color: var(--secondary);
+        }
+        
+        .module {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .module:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .concept {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: var(--light);
+            border-left: 4px solid var(--secondary);
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .example {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .example-header {
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .step {
+            margin: 10px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .step:before {
+            content: "➔";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+        
+        .formula {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f0f7ff;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            overflow-x: auto;
+        }
+        
+        .key-point {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .nav-btn {
+            padding: 8px 15px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background-color: var(--primary);
+        }
+        
+        .visual {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .area-box {
+            width: 150px;
+            height: 100px;
+            background: linear-gradient(to top, #3498db, #2c3e50);
+            position: relative;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .curve {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 70%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 70"><path d="M0,70 Q50,20 100,40 T150,0" fill="%233498db" opacity="0.7"/></svg>');
+        }
+        
+        .rectangles {
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            width: 100%;
+            height: 70%;
+        }
+        
+        .rect {
+            flex: 1;
+            border-right: 1px solid white;
+            background-color: rgba(231, 76, 60, 0.3);
+        }
+        
+        .volume-visual {
+            width: 150px;
+            height: 150px;
+            background: #e0f7fa;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            margin: 10px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        
+        .disk {
+            position: absolute;
+            background: rgba(33, 150, 243, 0.3);
+            border: 1px solid #2196f3;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #0d47a1;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .washer {
+            position: absolute;
+            background: radial-gradient(circle, transparent 40%, rgba(33, 150, 243, 0.3) 40%);
+            border: 1px solid #2196f3;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #0d47a1;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .shell {
+            position: absolute;
+            background: rgba(76, 175, 80, 0.3);
+            border: 1px solid #4caf50;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #2e7d32;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .arc-length-demo {
+            width: 200px;
+            height: 100px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            position: relative;
+            margin: 15px auto;
+            overflow: hidden;
+        }
+        
+        .curve-path {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 90%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 90"><path d="M0,90 Q40,30 100,50 T200,10" fill="none" stroke="%233498db" stroke-width="2"/></svg>');
+        }
+        
+        .arc-segment {
+            position: absolute;
+            background: rgba(231, 76, 60, 0.3);
+            border: 1px solid #e74c3c;
+        }
+        
+        .grid-visual {
+            display: flex;
+            flex-wrap: wrap;
+            width: 150px;
+            height: 150px;
+            border: 1px solid #3498db;
+            position: relative;
+            margin: 15px auto;
+            background-color: #e3f2fd;
+        }
+        
+        .grid-cell {
+            box-sizing: border-box;
+            border: 1px solid #90caf9;
+            width: 25%;
+            height: 25%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+        }
+        
+        .solid-visual {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, #bbdefb, #e3f2fd);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            margin: 15px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        
+        .solid-layer {
+            position: absolute;
+            background: rgba(33, 150, 243, 0.2);
+            border: 1px solid #2196f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #0d47a1;
+            font-size: 10px;
+        }
+        
+        .identity-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .identity-table th {
+            background: var(--secondary);
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .identity-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        
+        .identity-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .section {
+            margin: 25px 0;
+            padding: 20px;
+            background-color: var(--light);
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .graph-box {
+            width: 220px;
+            height: 150px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        
+        .hyperbolic-graph {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 150"><path d="M20,75 Q110,10 200,75" fill="none" stroke="%233498db" stroke-width="1.5"/><path d="M20,75 Q110,140 200,75" fill="none" stroke="%23e74c3c" stroke-width="1.5"/></svg>');
+        }
+        
+        .inverse-trig-graph {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 150"><path d="M20,130 C50,50 170,50 200,130" fill="none" stroke="%233498db" stroke-width="1.5"/><path d="M20,20 C50,100 170,100 200,20" fill="none" stroke="%23e74c3c" stroke-width="1.5"/><path d="M20,75 L200,75" fill="none" stroke="%2390caf9" stroke-width="0.5" stroke-dasharray="5,5"/></svg>');
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .module {
+                padding: 15px;
+            }
+            
+            .visual {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .area-box, .volume-visual {
+                margin: 10px 0;
+            }
+            
+            .identity-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Calculus 2 Simplified Guide</h1>
+        <p>Everything you need to know in one place - explained simply!</p>
+    </header>
+    
+    <div class="nav">
+        <button class="nav-btn" onclick="showModule('m1')">M1: Introduction</button>
+        <button class="nav-btn" onclick="showModule('m2')">M2: Riemann Sums</button>
+        <button class="nav-btn" onclick="showModule('m3')">M3: Exponential & Log</button>
+        <button class="nav-btn" onclick="showModule('m4')">M4: Trig Integrals</button>
+        <button class="nav-btn" onclick="showModule('m5')">M5: Hyperbolic Functions</button>
+        <button class="nav-btn" onclick="showModule('m6')">M6: Area Applications</button>
+        <button class="nav-btn" onclick="showModule('m7')">M7: Integration by Parts</button>
+        <button class="nav-btn" onclick="showModule('m8')">M8: Trig Substitution</button>
+        <button class="nav-btn" onclick="showModule('m9')">M9: Partial Fractions</button>
+        <button class="nav-btn" onclick="showModule('m10')">M10: Volume</button>
+        <button class="nav-btn" onclick="showModule('m11')">M11: Further Applications</button>
+        <button class="nav-btn" onclick="showModule('m12')">M12: Multiple Integrals</button>
+        <button class="nav-btn" onclick="showModule('m_tables')">Identities Tables</button>
+    </div>
+    
+     <div id="m1" class="module">
+        <h2>Module 1: Introduction to Integral Calculus</h2>
+        
+        <div class="concept">
+            <h3>What is Integration?</h3>
+            <p>Integration is like fancy addition - it helps us calculate things like areas, volumes, and totals by adding up infinitely many infinitely small pieces.</p>
+            <div class="key-point">
+                Think of calculating the volume of a lamp base by slicing it into thin disks and adding up their volumes.
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Antiderivatives (Reverse Differentiation)</h3>
+            <p>If differentiation tells us the slope of a curve, antidifferentiation (integration) tells us the original function when we know its slope.</p>
+            
+            <div class="example">
+                <div class="example-header">Simple Antiderivative:</div>
+                <div class="step">Derivative of \(x^2\) is \(2x\)</div>
+                <div class="step">So antiderivative of \(2x\) is \(x^2 + C\)</div>
+                <div class="step">The \(+C\) is called the constant of integration</div>
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Basic Integration Rules</h3>
+            
+            <div class="formula">
+                Power Rule: \(\int x^n  dx = \frac{x^{n+1}}{n+1} + C\) (for \(n \neq -1\))
+            </div>
+            
+            <div class="example">
+                <div class="example-header">Example: \(\int 3x^4  dx\)</div>
+                <div class="step">Constant Multiple Rule: \(3 \int x^4  dx\)</div>
+                <div class="step">Apply Power Rule: \(3 \cdot \frac{x^{5}}{5} + C\)</div>
+                <div class="step">Simplify: \(\frac{3}{5}x^5 + C\)</div>
+            </div>
+            
+            <div class="formula">
+                Sum Rule: \(\int [f(x) + g(x)]  dx = \int f(x)  dx + \int g(x)  dx\)
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Substitution Method (u-Substitution)</h3>
+            <p>The reverse chain rule - used when you see a function and its derivative multiplied together.</p>
+            
+            <div class="example">
+                <div class="example-header">Example: \(\int (2x+1)^3  dx\)</div>
+                <div class="step">Let \(u = 2x + 1\)</div>
+                <div class="step">Then \(du = 2  dx\) → \(dx = \frac{du}{2}\)</div>
+                <div class="step">Substitute: \(\int u^3 \cdot \frac{du}{2} = \frac{1}{2} \int u^3  du\)</div>
+                <div class="step">Integrate: \(\frac{1}{2} \cdot \frac{u^4}{4} + C = \frac{u^4}{8} + C\)</div>
+                <div class="step">Back-substitute: \(\frac{(2x+1)^4}{8} + C\)</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="m2" class="module" style="display:none">
+        <h2>Module 2: Riemann Sums and Definite Integrals</h2>
+        
+        <div class="concept">
+            <h3>Riemann Sums: Adding Rectangles</h3>
+            <p>We approximate area under a curve by adding areas of rectangles:</p>
+            
+            <div class="formula">
+                \(\text{Area} \approx \sum_{i=1}^{n} f(x_i^*) \Delta x\)
+            </div>
+            
+            <div class="key-point">
+                \(\Delta x = \frac{b-a}{n}\) (width of each rectangle)<br>
+                \(x_i^*\) is any point in the i-th interval
+            </div>
+            
+            <div class="visual">
+                <div class="area-box">
+                    <div class="curve"></div>
+                    <div class="rectangles">
+                        <div class="rect"></div>
+                        <div class="rect"></div>
+                        <div class="rect"></div>
+                        <div class="rect"></div>
+                        <div class="rect"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Definite Integral: The Exact Area</h3>
+            <p>The limit of Riemann sums as rectangles get infinitely thin:</p>
+            
+            <div class="formula">
+                \(\int_a^b f(x)  dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x\)
+            </div>
+            
+            <div class="example">
+                <div class="example-header">Example: Area under \(y = x^2\) from 0 to 1</div>
+                <div class="step">Using right endpoints: \(x_i^* = \frac{i}{n}\)</div>
+                <div class="step">\(\Delta x = \frac{1}{n}\)</div>
+                <div class="step">Sum: \(\sum_{i=1}^n \left(\frac{i}{n}\right)^2 \cdot \frac{1}{n} = \frac{1}{n^3} \sum i^2\)</div>
+                <div class="step">Formula: \(\sum i^2 = \frac{n(n+1)(2n+1)}{6}\)</div>
+                <div class="step">Limit as \(n \to \infty\): \(\frac{1}{3}\)</div>
+                <div class="step">So \(\int_0^1 x^2  dx = \frac{1}{3}\)</div>
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Fundamental Theorem of Calculus</h3>
+            <p>The bridge between derivatives and integrals:</p>
+            
+            <div class="formula">
+                Part 1: \(\frac{d}{dx} \int_a^x f(t)  dt = f(x)\)
+            </div>
+            
+            <div class="formula">
+                Part 2: \(\int_a^b f(x)  dx = F(b) - F(a)\) where \(F'(x) = f(x)\)
+            </div>
+            
+            <div class="example">
+                <div class="example-header">Example: \(\int_1^3 2x  dx\)</div>
+                <div class="step">Antiderivative of \(2x\) is \(x^2\)</div>
+                <div class="step">So \(F(3) - F(1) = 3^2 - 1^2 = 9 - 1 = 8\)</div>
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Properties of Integrals</h3>
+            
+            <div class="formula">
+                \(\int_a^b [f(x) + g(x)]  dx = \int_a^b f(x)  dx + \int_a^b g(x)  dx\)
+            </div>
+            
+            <div class="formula">
+                \(\int_a^b c f(x)  dx = c \int_a^b f(x)  dx\)
+            </div>
+            
+            <div class="formula">
+                \(\int_a^b f(x)  dx = \int_a^c f(x)  dx + \int_c^b f(x)  dx\)
+            </div>
+        </div>
+    </div>
+    
+    <div id="m3" class="module" style="display:none">
+        <h2>Module 3: Exponential and Logarithmic Integrals</h2>
+        
+        <div class="concept">
+            <h3>Exponential Functions</h3>
+            
+            <div class="formula">
+                \(\int e^x  dx = e^x + C\)
+            </div>
+            
+            <div class="formula">
+                \(\int a^x  dx = \frac{a^x}{\ln a} + C\)
+            </div>
+            
+            <div class="example">
+                <div class="example-header">Example: \(\int 2e^{3x}  dx\)</div>
+                <div class="step">Let \(u = 3x\), then \(du = 3  dx\) → \(dx = \frac{du}{3}\)</div>
+                <div class="step">Substitute: \(\int 2e^u \cdot \frac{du}{3} = \frac{2}{3} \int e^u  du\)</div>
+                <div class="step">Integrate: \(\frac{2}{3} e^u + C\)</div>
+                <div class="step">Back-substitute: \(\frac{2}{3} e^{3x} + C\)</div>
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Logarithmic Functions</h3>
+            
+            <div class="formula">
+                \(\int \frac{1}{x}  dx = \ln |x| + C\)
+            </div>
+            
+            <div class="formula">
+                General Form: \(\int \frac{f'(x)}{f(x)}  dx = \ln |f(x)| + C\)
+            </div>
+            
+            <div class="example">
+                <div class="example-header">Example: \(\int \frac{3x^2}{x^3 + 1}  dx\)</div>
+                <div class="step">Notice numerator is derivative of denominator</div>
+                <div class="step">Let \(u = x^3 + 1\), then \(du = 3x^2  dx\)</div>
+                <div class="step">Substitute: \(\int \frac{1}{u}  du\)</div>
+                <div class="step">Integrate: \(\ln |u| + C\)</div>
+                <div class="step">Back-substitute: \(\ln |x^3 + 1| + C\)</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="m4" class="module" style="display:none">
+        <h2>Module 4: Trigonometric Integrals</h2>
+        
+        <div class="concept">
+            <h3>Basic Trigonometric Integrals</h3>
+            
+            <div class="formula">
+                \(\int \sin x  dx = -\cos x + C\)
+            </div>
+            
+            <div class="formula">
+                \(\int \cos x  dx = \sin x + C\)
+            </div>
+            
+            <div class="formula">
+                \(\int \sec^2 x  dx = \tan x + C\)
+            </div>
+            
+            <div class="example">
+                <div class="example-header">Example: \(\int \sin(2x)  dx\)</div>
+                <div class="step">Let \(u = 2x\), then \(du = 2  dx\) → \(dx = \frac{du}{2}\)</div>
+                <div class="step">Substitute: \(\int \sin u \cdot \frac{du}{2} = \frac{1}{2} \int \sin u  du\)</div>
+                <div class="step">Integrate: \(\frac{1}{2} (-\cos u) + C = -\frac{1}{2} \cos u + C\)</div>
+                <div class="step">Back-substitute: \(-\frac{1}{2} \cos(2x) + C\)</div>
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Inverse Trigonometric Integrals</h3>
+            
+            <div class="formula">
+                \(\int \frac{1}{\sqrt{1-x^2}}  dx = \sin^{-1}x + C\)
+            </div>
+            
+            <div class="formula">
+                \(\int \frac{1}{1+x^2}  dx = \tan^{-1}x + C\)
+            </div>
+            
+            <div class="example">
+                <div class="example-header">Example: \(\int \frac{1}{\sqrt{4-x^2}}  dx\)</div>
+                <div class="step">Rewrite: \(\int \frac{1}{\sqrt{2^2 - x^2}}  dx\)</div>
+                <div class="step">Apply formula: \(\sin^{-1}\left(\frac{x}{2}\right) + C\)</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="m5" class="module" style="display:none">
+        <h2>Module 5: Hyperbolic Functions</h2>
+        
+        <div class="concept">
+            <h3>What are Hyperbolic Functions?</h3>
+            
+            <div class="formula">
+                \(\sinh x = \frac{e^x - e^{-x}}{2}\)
+            </div>
+            
+            <div class="formula">
+                \(\cosh x = \frac{e^x + e^{-x}}{2}\)
+            </div>
+            
+            <div class="key-point">
+                Key Identity: \(\cosh^2 x - \sinh^2 x = 1\)
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Hyperbolic Integrals</h3>
+            
+            <div class="formula">
+                \(\int \sinh x  dx = \cosh x + C\)
+            </div>
+            
+            <div class="formula">
+                \(\int \cosh x  dx = \sinh x + C\)
+            </div>
+            
+            <div class="example">
+                <div class="example-header">Example: \(\int \frac{\cosh x}{2 + 3\sinh x}  dx\)</div>
+                <div class="step">Let \(u = 2 + 3\sinh x\)</div>
+                <div class="step">Then \(du = 3\cosh x  dx\) → \(\cosh x  dx = \frac{du}{3}\)</div>
+                <div class="step">Substitute: \(\int \frac{1}{u} \cdot \frac{du}{3} = \frac{1}{3} \int \frac{1}{u}  du\)</div>
+                <div class="step">Integrate: \(\frac{1}{3} \ln |u| + C\)</div>
+                <div class="step">Back-substitute: \(\frac{1}{3} \ln |2 + 3\sinh x| + C\)</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="m6" class="module" style="display:none">
+        <h2>Module 6: Area Applications</h2>
+        
+        <div class="concept">
+            <h3>Area Under a Curve</h3>
+            
+            <div class="formula">
+                For curve above x-axis: \(\text{Area} = \int_a^b f(x)  dx\)
+            </div>
+            
+            <div class="formula">
+                For curve below x-axis: \(\text{Area} = \left| \int_a^b f(x)  dx \right|\)
+            </div>
+            
+            <div class="visual">
+                <div class="area-box">
+                    <div class="curve"></div>
+                </div>
+            </div>
+            
+            <div class="example">
+                <div class="example-header">Example: Area under \(y = x^2 + 2\) from x=1 to x=2</div>
+                <div class="step">\(\text{Area} = \int_1^2 (x^2 + 2)  dx\)</div>
+                <div class="step">\(= \left[ \frac{x^3}{3} + 2x \right]_1^2\)</div>
+                <div class="step">\(= \left( \frac{8}{3} + 4 \right) - \left( \frac{1}{3} + 2 \right) = \frac{13}{3}\)</div>
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Area Between Curves</h3>
+            
+            <div class="formula">
+                \(\text{Area} = \int_a^b [f(x) - g(x)]  dx\) where \(f(x) \geq g(x)\)
+            </div>
+            
+            <div class="key-point">
+                Always subtract the lower curve from the upper curve
+            </div>
+            
+            <div class="example">
+                <div class="example-header">Example: Area between \(y = e^x\) and \(y = x\) from x=0 to x=1</div>
+                <div class="step">\(e^x\) is above \(x\) in this interval</div>
+                <div class="step">\(\text{Area} = \int_0^1 (e^x - x)  dx\)</div>
+                <div class="step">\(= \left[ e^x - \frac{x^2}{2} \right]_0^1\)</div>
+                <div class="step">\(= (e - 0.5) - (1 - 0) = e - 1.5 \approx 1.218\)</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="m7" class="module" style="display:none">
+        <h2>Module 7: Integration by Parts</h2>
+        
+        <div class="concept">
+            <h3>The Formula</h3>
+            
+            <div class="formula">
+                \(\int u  dv = uv - \int v  du\)
+            </div>
+            
+            <div class="key-point">
+                Remember LIATE for choosing u: <br>
+                Logarithmic, Inverse trig, Algebraic, Trigonometric, Exponential
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Simple Case</h3>
+            
+            <div class="example">
+                <div class="example-header">Example: \(\int x \sin x  dx\)</div>
+                <div class="step">Choose: \(u = x\) (algebraic), \(dv = \sin x  dx\)</div>
+                <div class="step">Then: \(du = dx\), \(v = -\cos x\)</div>
+                <div class="step">Apply formula: \(x(-\cos x) - \int (-\cos x)  dx\)</div>
+                <div class="step">\(= -x \cos x + \int \cos x  dx\)</div>
+                <div class="step">\(= -x \cos x + \sin x + C\)</div>
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Repeated Application</h3>
+            
+            <div class="example">
+                <div class="example-header">Example: \(\int x^2 e^x  dx\)</div>
+                <div class="step">First: \(u = x^2\), \(dv = e^x  dx\) → \(du = 2x  dx\), \(v = e^x\)</div>
+                <div class="step">\(\int = x^2 e^x - \int 2x e^x  dx\)</div>
+                <div class="step">Second: \(u = 2x\), \(dv = e^x  dx\) → \(du = 2  dx\), \(v = e^x\)</div>
+                <div class="step">\(\int = x^2 e^x - \left[2x e^x - \int 2 e^x  dx\right]\)</div>
+                <div class="step">\(= x^2 e^x - 2x e^x + 2e^x + C\)</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="m8" class="module" style="display:none">
+        <h2>Module 8: Trigonometric Substitution</h2>
+        
+        <div class="concept">
+            <h3>When to Use It</h3>
+            
+            <div class="key-point">
+                \(\sqrt{a^2 - x^2}\) → Use \(x = a \sin \theta\)<br>
+                \(\sqrt{a^2 + x^2}\) → Use \(x = a \tan \theta\)<br>
+                \(\sqrt{x^2 - a^2}\) → Use \(x = a \sec \theta\)
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Basic Example</h3>
+            
+            <div class="example">
+                <div class="example-header">Example: \(\int \frac{1}{\sqrt{9 - x^2}}  dx\)</div>
+                <div class="step">Let \(x = 3 \sin \theta\), then \(dx = 3 \cos \theta  d\theta\)</div>
+                <div class="step">\(\sqrt{9 - x^2} = \sqrt{9 - 9\sin^2 \theta} = 3 \cos \theta\)</div>
+                <div class="step">\(\int \frac{1}{3 \cos \theta} \cdot 3 \cos \theta  d\theta = \int 1  d\theta\)</div>
+                <div class="step">\(= \theta + C = \sin^{-1}\left(\frac{x}{3}\right) + C\)</div>
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Harder Example</h3>
+            
+            <div class="example">
+                <div class="example-header">Example: \(\int \frac{x}{\sqrt{3 - 2x - x^2}}  dx\)</div>
+                <div class="step">Complete the square: \(3 - 2x - x^2 = 4 - (x+1)^2\)</div>
+                <div class="step">Let \(u = x + 1\), then \(du = dx\) and \(x = u-1\)</div>
+                <div class="step">\(\int \frac{u - 1}{\sqrt{4 - u^2}}  du\)</div>
+                <div class="step">Now let \(u = 2 \sin \theta\), \(du = 2 \cos \theta  d\theta\)</div>
+                <div class="step">After substitution: \(\int (2 \sin \theta - 1)  d\theta\)</div>
+                <div class="step">\(= -2 \cos \theta - \theta + C\)</div>
+                <div class="step">Back-substitute: \(-\sqrt{4 - u^2} - \sin^{-1}(u/2) + C\)</div>
+                <div class="step">\(= -\sqrt{3 - 2x - x^2} - \sin^{-1}\left(\frac{x+1}{2}\right) + C\)</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="m9" class="module" style="display:none">
+        <h2>Module 9: Partial Fractions</h2>
+        
+        <div class="concept">
+            <h3>Breaking Down Rational Functions</h3>
+            
+            <div class="key-point">
+                Used for integrals of rational functions (polynomial over polynomial).
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Case 1: Distinct Linear Factors</h3>
+            
+            <div class="example">
+                <div class="example-header">Example: \(\int \frac{x+5}{x^2 + x - 2}  dx\)</div>
+                <div class="step">Factor denominator: \((x-1)(x+2)\)</div>
+                <div class="step">Set up: \(\frac{x+5}{(x-1)(x+2)} = \frac{A}{x-1} + \frac{B}{x+2}\)</div>
+                <div class="step">Multiply: \(x+5 = A(x+2) + B(x-1)\)</div>
+                <div class="step">Solve: A = 2, B = -1 (by plugging in x=1 and x=-2)</div>
+                <div class="step">\(\int \left( \frac{2}{x-1} - \frac{1}{x+2} \right) dx = 2 \ln|x-1| - \ln|x+2| + C\)</div>
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Case 2: Repeated Linear Factors</h3>
+            
+            <div class="example">
+                <div class="example-header">Example: \(\int \frac{4x}{(x-1)^2(x+1)}  dx\)</div>
+                <div class="step">Set up: \(\frac{4x}{(x-1)^2(x+1)} = \frac{A}{x-1} + \frac{B}{(x-1)^2} + \frac{C}{x+1}\)</div>
+                <div class="step">Multiply: \(4x = A(x-1)(x+1) + B(x+1) + C(x-1)^2\)</div>
+                <div class="step">Solve: A = 1, B = 2, C = -1</div>
+                <div class="step">\(\int \left( \frac{1}{x-1} + \frac{2}{(x-1)^2} - \frac{1}{x+1} \right) dx\)</div>
+                <div class="step">\(= \ln|x-1| - \frac{2}{x-1} - \ln|x+1| + C\)</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="m10" class="module" style="display:none">
+        <h2>Module 10: Volume Applications</h2>
+        
+        <div class="concept">
+            <h3>What is Volume?</h3>
+            <p>Volume measures how much 3D space an object occupies. We calculate volumes by adding up infinitely thin slices of the object.</p>
+            
+            <div class="key-point">
+                Think of slicing a loaf of bread - the total volume is the sum of all slice volumes!
+            </div>
+            
+            <div class="visual">
+                <div class="volume-visual">
+                    <div class="disk" style="width: 140px; height: 140px; top: 5px; left: 5px; line-height: 140px;">Solid</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Disk Method</h3>
+            <p>Rotate a curve around an axis to create a solid. Each slice perpendicular to the axis is a disk.</p>
+            
+            <div class="formula">
+                \[V = \int_{a}^{b} \pi [r(x)]^2 dx\]
+            </div>
+            
+            <div class="example">
+                <div class="example-header">Example: Volume of solid from rotating y = √x around x-axis (0 to 1)</div>
+                <div class="step">Radius at any point x is r(x) = √x</div>
+                <div class="step">Area of disk: A(x) = π(√x)² = πx</div>
+                <div class="step">Volume: \( V = \int_{0}^{1} \pi x  dx = \pi \left[ \frac{x^2}{2} \right]_{0}^{1} = \frac{\pi}{2} \)</div>
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Washer Method</h3>
+            <p>When there's a hole in the middle, each slice is a washer (disk with hole).</p>
+            
+            <div class="formula">
+                \[V = \int_{a}^{b} \pi \left([R(x)]^2 - [r(x)]^2\right) dx\]
+            </div>
+            
+            <div class="example">
+                <div class="example-header">Example: Rotate area between y = x and y = x² around x-axis (0 to 1)</div>
+                <div class="step">Outer radius: R(x) = x</div>
+                <div class="step">Inner radius: r(x) = x²</div>
+                <div class="step">Area: A(x) = π(x² - (x²)²) = π(x² - x⁴)</div>
+                <div class="step">Volume: \( V = \int_{0}^{1} \pi (x^2 - x^4) dx = \pi \left[ \frac{x^3}{3} - \frac{x^5}{5} \right]_{0}^{1} = \frac{2\pi}{15} \)</div>
+            </div>
+            
+            <div class="visual">
+                <div class="volume-visual">
+                    <div class="washer" style="width: 140px; height: 140px; top: 5px; left: 5px;">
+                        Washer
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Cylindrical Shells</h3>
+            <p>For rotation around y-axis, use cylindrical shells instead of disks.</p>
+            
+            <div class="formula">
+                \[V = \int_{a}^{b} 2\pi x f(x)  dx\]
+            </div>
+            
+            <div class="key-point">
+                Shell volume = (circumference) × (height) × (thickness) = (2πr) × (h) × (dx)
+            </div>
+            
+            <div class="example">
+                <div class="example-header">Example: Rotate y = x² around y-axis (0 to 2)</div>
+                <div class="step">Radius of shell: r = x</div>
+                <div class="step">Height of shell: h = x²</div>
+                <div class="step">Volume: \( V = \int_{0}^{2} 2\pi x (x^2)  dx = 2\pi \int_{0}^{2} x^3  dx = 2\pi \left[ \frac{x^4}{4} \right]_{0}^{2} = 8\pi \)</div>
+            </div>
+            
+            <div class="visual">
+                <div class="volume-visual">
+                    <div class="shell" style="width: 30px; height: 120px; left: 60px; top: 15px;">Shell</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="m11" class="module" style="display:none">
+        <h2>Module 11: Further Applications</h2>
+        
+        <div class="concept">
+            <h3>Arc Length</h3>
+            <p>Length of a curve - like measuring a winding road with a ruler made of tiny straight segments.</p>
+            
+            <div class="formula">
+                \[L = \int_{a}^{b} \sqrt{1 + \left(\frac{dy}{dx}\right)^2}  dx\]
+            </div>
+            
+            <div class="example">
+                <div class="example-header">Example: Find arc length of \(y = \frac{2}{3}x^{3/2}\) from x=0 to x=3</div>
+                <div class="step">Derivative: \( \frac{dy}{dx} = x^{1/2} = \sqrt{x} \)</div>
+                <div class="step">Set up: \( L = \int_{0}^{3} \sqrt{1 + (\sqrt{x})^2}  dx = \int_{0}^{3} \sqrt{1 + x}  dx \)</div>
+                <div class="step">Integrate: \( \left[ \frac{2}{3}(1+x)^{3/2} \right]_0^3 = \frac{2}{3}(4^{3/2} - 1^{3/2}) = \frac{2}{3}(8-1) = \frac{14}{3} \)</div>
+            </div>
+            
+            <div class="arc-length-demo">
+                <div class="curve-path"></div>
+                <div class="arc-segment" style="width: 40px; height: 15px; left: 10px; top: 70px;">ds</div>
+                <div class="arc-segment" style="width: 40px; height: 15px; left: 50px; top: 50px;">ds</div>
+                <div class="arc-segment" style="width: 40px; height: 15px; left: 90px; top: 30px;">ds</div>
+                <div class="arc-segment" style="width: 40px; height: 15px; left: 130px; top: 20px;">ds</div>
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Surface Area of Revolution</h3>
+            <p>Area created by rotating a curve around an axis - like a vase surface.</p>
+            
+            <div class="formula">
+                Rotate around x-axis: \[S = \int_{a}^{b} 2\pi y \sqrt{1 + \left(\frac{dy}{dx}\right)^2}  dx\]
+            </div>
+            
+            <div class="example">
+                <div class="example-header">Example: Surface area of y = √x rotated around x-axis (0 to 1)</div>
+                <div class="step">dy/dx = 1/(2√x)</div>
+                <div class="step">Set up: \( S = \int_{0}^{1} 2\pi \sqrt{x} \sqrt{1 + \left(\frac{1}{2\sqrt{x}}\right)^2}  dx \)</div>
+                <div class="step">Simplify: \( S = \int_{0}^{1} 2\pi \sqrt{x} \sqrt{1 + \frac{1}{4x}} dx = \int_0^1 2\pi \sqrt{x+\frac{1}{4}} dx \)</div>
+                <div class="step">Solution: \( \frac{\pi}{6}(5\sqrt{5} - 1) \approx 5.33 \)</div>
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Work in Physics</h3>
+            <p>Work = Force × Distance. For variable force, we integrate!</p>
+            
+            <div class="formula">
+                \[W = \int_{a}^{b} F(x)  dx\]
+            </div>
+            
+            <div class="example">
+                <div class="example-header">Example: Stretching a spring</div>
+                <div class="step">Hooke's Law: F(x) = kx (k is spring constant)</div>
+                <div class="step">Work to stretch from natural length (0) to b: \( W = \int_{0}^{b} kx  dx = \frac{1}{2}kb^2 \)</div>
+                <div class="step">If k = 50 N/m, stretch 0.3m from rest:</div>
+                <div class="step">\( W = \frac{1}{2}(50)(0.3)^2 = 2.25 J \)</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="m12" class="module" style="display:none">
+        <h2>Module 12: Multiple Integrals Made Simple</h2>
+        
+        <div class="concept">
+            <h3>What Are Multiple Integrals?</h3>
+            <p>Multiple integrals extend single integrals to higher dimensions. Just like single integrals give area under a curve, double integrals give volume under a surface, and triple integrals give hypervolumes or mass in 3D space.</p>
+            
+            <div class="visual">
+                <div class="area-box">
+                    <div class="curve"></div>
+                </div>
+                <div class="volume-visual">
+                     <div class="disk" style="width: 140px; height: 20px; top: 10px;">Surface</div>
+                    <div class="disk" style="width: 130px; height: 20px; top: 40px;">z = f(x,y)</div>
+                </div>
+            </div>
+            
+            <div class="key-point">
+                <strong>Simple Analogy:</strong><br>
+                Single Integral → Area of a slice of bread<br>
+                Double Integral → Volume of the whole loaf<br>
+                Triple Integral → Mass of the loaf (if you know its density)
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Double Integrals: Volume Under a Surface</h3>
+            <p>For a function z = f(x,y) over a region R in the xy-plane:</p>
+            
+            <div class="formula">
+                \[ \iint_R f(x,y)  dA = \text{Volume under the surface} \]
+            </div>
+            
+            <div class="example">
+                <div class="example-header">Example: Find volume under z = 2x + y over rectangle 0≤x≤2, 0≤y≤1</div>
+                <div class="step">Set up the double integral: \(\int_0^1 \int_0^2 (2x + y)  dx  dy\)</div>
+                <div class="step">First integrate w.r.t x: \(\int_0^1 \left[ x^2 + xy \right]_{x=0}^{x=2} dy = \int_0^1 (4 + 2y)  dy\)</div>
+                <div class="step">Now integrate w.r.t y: \(\left[ 4y + y^2 \right]_{0}^{1} = 4(1) + (1)^2 - 0 = 5\)</div>
+                <div class="step">Volume = 5 cubic units</div>
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Fubini's Theorem: Changing Order of Integration</h3>
+            <p>You can often switch the order of integration to make calculations easier!</p>
+            
+            <div class="formula">
+                \[ \int_{x=a}^{b} \int_{y=c}^{d} f(x,y)  dy  dx = \int_{y=c}^{d} \int_{x=a}^{b} f(x,y)  dx  dy \]
+            </div>
+            
+            <div class="example">
+                <div class="example-header">Example: Evaluate \(\int_0^1 \int_0^2 xy^2  dx  dy\)</div>
+                <div class="step">Inner integral: \(\int_0^2 xy^2  dx = \left[ \frac{1}{2}x^2 y^2 \right]_{x=0}^{2} = \frac{1}{2}(4)y^2 - 0 = 2y^2\)</div>
+                <div class="step">Outer integral: \(\int_0^1 2y^2  dy = \left[ \frac{2}{3}y^3 \right]_0^1 = \frac{2}{3}\)</div>
+                <div class="key-point">Notice we treated y as a constant when integrating w.r.t x.</div>
+            </div>
+        </div>
+        
+        <div class="concept">
+            <h3>Triple Integrals: Beyond Volume</h3>
+            <p>Triple integrals let us calculate properties in 3D space like mass, center of mass, and moments of inertia.</p>
+            
+            <div class="formula">
+                \[ \iiint_E f(x,y,z)  dV \]
+            </div>
+            
+            <div class="example">
+                <div class="example-header">Example: Find volume of box 0≤x≤3, 0≤y≤2, 0≤z≤1 using triple integral</div>
+                <div class="step">Set up: \(\int_0^1 \int_0^2 \int_0^3  dx  dy  dz\)</div>
+                <div class="step">Integrate w.r.t x: \(\int_0^1 \int_0^2 [x]_0^3  dy  dz = \int_0^1 \int_0^2 3  dy  dz\)</div>
+                <div class="step">Integrate w.r.t y: \(\int_0^1 [3y]_0^2  dz = \int_0^1 6  dz\)</div>
+                <div class="step">Integrate w.r.t z: \([6z]_0^1 = 6\)</div>
+                <div class="step">Volume = 6 cubic units (matches length×width×height)</div>
+            </div>
+        </div>
+
+        <div class="concept">
+            <h3>Cheat Sheet: Multiple Integrals</h3>
+            <div class="key-point">
+                <strong>Double Integrals:</strong><br>
+                1. Set up limits (draw the region if needed).<br>
+                2. Integrate the inner integral first, treating the outer variable as a constant.<br>
+                3. Then integrate the resulting outer integral.<br>
+                4. Switch the order of integration (Fubini's Theorem) if it makes the problem easier!
+            </div>
+            
+            <div class="key-point">
+                <strong>Triple Integrals:</strong><br>
+                1. Determine the "slicing" order (dz dy dx, etc.).<br>
+                2. Find the limits for each variable, where inner limits can depend on outer variables.<br>
+                3. Integrate from the inside to the outside.<br>
+                4. Use symmetry to simplify when possible.
+            </div>
+        </div>
+    </div>
+    
+    <div id="m_tables" class="module" style="display:none;">
+        <h2>Hyperbolic & Inverse Trig Reference</h2>
+        
+        <div class="section">
+            <h2>Hyperbolic Functions Overview</h2>
+            
+            <div class="visual">
+                <div class="graph-box">
+                    <div class="hyperbolic-graph"></div>
+                    <div style="position: absolute; bottom: 5px; left: 5px; font-size: 10px; color: #3498db;">cosh x</div>
+                    <div style="position: absolute; top: 5px; left: 5px; font-size: 10px; color: #e74c3c;">sinh x</div>
+                </div>
+            </div>
+            
+            <div class="formula">
+                \(\sinh x = \frac{e^x - e^{-x}}{2}\)
+            </div>
+            
+            <div class="formula">
+                \(\cosh x = \frac{e^x + e^{-x}}{2}\)
+            </div>
+            
+            <div class="formula">
+                \(\tanh x = \frac{\sinh x}{\cosh x} = \frac{e^x - e^{-x}}{e^x + e^{-x}}\)
+            </div>
+            
+            <div class="key-point">
+                Hyperbolic functions are analogs of trigonometric functions but for a hyperbola rather than a circle.
+                They appear frequently in solutions to differential equations and integration problems.
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Hyperbolic Identities</h2>
+            
+            <table class="identity-table">
+                <tr>
+                    <th>Identity</th>
+                    <th>Formula</th>
+                    <th>Trig Equivalent</th>
+                </tr>
+                <tr>
+                    <td>Pythagorean Identity</td>
+                    <td>\(\cosh^2 x - \sinh^2 x = 1\)</td>
+                    <td>\(\cos^2 x + \sin^2 x = 1\)</td>
+                </tr>
+                <tr>
+                    <td>Addition Formulas</td>
+                    <td>\(\sinh(x \pm y) = \sinh x \cosh y \pm \cosh x \sinh y\)</td>
+                    <td>\(\sin(x \pm y) = \sin x \cos y \pm \cos x \sin y\)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>\(\cosh(x \pm y) = \cosh x \cosh y \pm \sinh x \sinh y\)</td>
+                    <td>\(\cos(x \pm y) = \cos x \cos y \mp \sin x \sin y\)</td>
+                </tr>
+                <tr>
+                    <td>Double Angle</td>
+                    <td>\(\sinh(2x) = 2 \sinh x \cosh x\)</td>
+                    <td>\(\sin(2x) = 2 \sin x \cos x\)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>\(\cosh(2x) = \cosh^2 x + \sinh^2 x\)</td>
+                    <td>\(\cos(2x) = \cos^2 x - \sin^2 x\)</td>
+                </tr>
+                <tr>
+                    <td>Derivatives</td>
+                    <td>\(\frac{d}{dx} \sinh x = \cosh x\)</td>
+                    <td>\(\frac{d}{dx} \sin x = \cos x\)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>\(\frac{d}{dx} \cosh x = \sinh x\)</td>
+                    <td>\(\frac{d}{dx} \cos x = -\sin x\)</td>
+                </tr>
+                <tr>
+                    <td>Inverse Hyperbolic</td>
+                    <td>\(\sinh^{-1} x = \ln(x + \sqrt{x^2 + 1})\)</td>
+                    <td>\(\sin^{-1} x\)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>\(\cosh^{-1} x = \ln(x + \sqrt{x^2 - 1}), \ x \geq 1\)</td>
+                    <td>\(\cos^{-1} x\)</td>
+                </tr>
+            </table>
+            
+            <div class="key-point">
+                <strong>Memory Tip:</strong> Hyperbolic identities are similar to trigonometric identities but with sign changes.
+                The Pythagorean identity is \(\cosh^2 - \sinh^2 = 1\) instead of \(\cos^2 + \sin^2 = 1\).
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Inverse Trigonometric Functions</h2>
+            
+            <div class="visual">
+                <div class="graph-box">
+                    <div class="inverse-trig-graph"></div>
+                    <div style="position: absolute; bottom: 5px; left: 5px; font-size: 10px; color: #3498db;">arccos x</div>
+                    <div style="position: absolute; top: 5px; left: 5px; font-size: 10px; color: #e74c3c;">arcsin x</div>
+                </div>
+            </div>
+            
+            <div class="formula">
+                \(\sin^{-1}x + \cos^{-1}x = \frac{\pi}{2}\)
+            </div>
+            
+            <div class="formula">
+                \(\tan^{-1}x + \cot^{-1}x = \frac{\pi}{2}\)
+            </div>
+            
+            <div class="formula">
+                \(\sec^{-1}x + \csc^{-1}x = \frac{\pi}{2}\)
+            </div>
+            
+            <div class="key-point">
+                Inverse trig functions are essential for integration, especially when dealing with expressions containing
+                \(\sqrt{a^2 - x^2}\), \(\sqrt{a^2 + x^2}\), and \(\sqrt{x^2 - a^2}\).
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Inverse Trig Derivatives & Integrals</h2>
+            
+            <table class="identity-table">
+                <tr>
+                    <th>Function</th>
+                    <th>Derivative</th>
+                    <th>Integral Form</th>
+                </tr>
+                <tr>
+                    <td>\(\sin^{-1}x\)</td>
+                    <td>\(\frac{1}{\sqrt{1-x^2}}\)</td>
+                    <td>\(\int \frac{1}{\sqrt{a^2 - x^2}} dx = \sin^{-1}\left(\frac{x}{a}\right) + C\)</td>
+                </tr>
+                <tr>
+                    <td>\(\cos^{-1}x\)</td>
+                    <td>\(-\frac{1}{\sqrt{1-x^2}}\)</td>
+                    <td>\(\int -\frac{1}{\sqrt{a^2 - x^2}} dx = \cos^{-1}\left(\frac{x}{a}\right) + C\)</td>
+                </tr>
+                <tr>
+                    <td>\(\tan^{-1}x\)</td>
+                    <td>\(\frac{1}{1+x^2}\)</td>
+                    <td>\(\int \frac{1}{a^2 + x^2} dx = \frac{1}{a} \tan^{-1}\left(\frac{x}{a}\right) + C\)</td>
+                </tr>
+                <tr>
+                    <td>\(\cot^{-1}x\)</td>
+                    <td>\(-\frac{1}{1+x^2}\)</td>
+                    <td>\(\int -\frac{1}{a^2 + x^2} dx = \frac{1}{a} \cot^{-1}\left(\frac{x}{a}\right) + C\)</td>
+                </tr>
+                <tr>
+                    <td>\(\sec^{-1}x\)</td>
+                    <td>\(\frac{1}{|x|\sqrt{x^2-1}}\)</td>
+                    <td>\(\int \frac{1}{x\sqrt{x^2 - a^2}} dx = \frac{1}{a} \sec^{-1}\left|\frac{x}{a}\right| + C\)</td>
+                </tr>
+                <tr>
+                    <td>\(\csc^{-1}x\)</td>
+                    <td>\(-\frac{1}{|x|\sqrt{x^2-1}}\)</td>
+                    <td>\(\int -\frac{1}{x\sqrt{x^2 - a^2}} dx = \frac{1}{a} \csc^{-1}\left|\frac{x}{a}\right| + C\)</td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div class="formula" style="font-size: 1.0rem;">
+                            \(\int \frac{1}{\sqrt{x^2 + a^2}} dx = \ln\left|x + \sqrt{x^2 + a^2}\right| + C = \sinh^{-1}\left(\frac{x}{a}\right) + C\)
+                        </div>
+                        <div class="formula" style="font-size: 1.0rem;">
+                            \(\int \frac{1}{\sqrt{x^2 - a^2}} dx = \ln\left|x + \sqrt{x^2 - a^2}\right| + C = \cosh^{-1}\left(\frac{x}{a}\right) + C\)
+                        </div>
+                        <div class="formula" style="font-size: 1.0rem;">
+                            \(\int \frac{1}{a^2 - x^2} dx = \frac{1}{2a} \ln\left|\frac{a+x}{a-x}\right| + C = \frac{1}{a}\tanh^{-1}\left(\frac{x}{a}\right)+C\)
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            
+            <div class="key-point">
+                <strong>Integration Tip:</strong> For expressions like \(\sqrt{a^2 - x^2}\), use \(x = a \sin \theta\) substitution.
+                For \(\sqrt{a^2 + x^2}\), use \(x = a \tan \theta\). For \(\sqrt{x^2 - a^2}\), use \(x = a \sec \theta\).
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Essential Hyperbolic Integrals</h2>
+            
+            <table class="identity-table">
+                <tr>
+                    <th>Integral</th>
+                    <th>Solution</th>
+                    <th>Notes</th>
+                </tr>
+                <tr>
+                    <td>\(\int \sinh x  dx\)</td>
+                    <td>\(\cosh x + C\)</td>
+                    <td>No sign change like trig version</td>
+                </tr>
+                <tr>
+                    <td>\(\int \cosh x  dx\)</td>
+                    <td>\(\sinh x + C\)</td>
+                    <td>Similar to \(\int \cos x  dx = \sin x + C\)</td>
+                </tr>
+                <tr>
+                    <td>\(\int \tanh x  dx\)</td>
+                    <td>\(\ln(\cosh x) + C\)</td>
+                    <td>u-sub with u = cosh x</td>
+                </tr>
+                <tr>
+                    <td>\(\int \coth x  dx\)</td>
+                    <td>\(\ln|\sinh x| + C\)</td>
+                    <td>For \(x \neq 0\)</td>
+                </tr>
+                <tr>
+                    <td>\(\int \sech x  dx\)</td>
+                    <td>\(\tan^{-1}(\sinh x) + C\)</td>
+                    <td>Or \(2\tan^{-1}(e^x) + C\)</td>
+                </tr>
+                <tr>
+                    <td>\(\int \csch x  dx\)</td>
+                    <td>\(\ln|\tanh \frac{x}{2}| + C\)</td>
+                    <td>For \(x \neq 0\)</td>
+                </tr>
+                <tr>
+                    <td>\(\int \sech^2 x  dx\)</td>
+                    <td>\(\tanh x + C\)</td>
+                    <td>Similar to \(\int \sec^2 x  dx = \tan x + C\)</td>
+                </tr>
+            </table>
+            
+            <div class="key-point">
+                <strong>Practical Tip:</strong> Hyperbolic substitutions (\(x=a\sinh\theta\), etc.) can be particularly useful for integrals involving
+                \(\sqrt{x^2 + a^2}\) and \(\sqrt{x^2 - a^2}\) when trigonometric substitutions become messy.
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript to handle module navigation -->
+    <script>
+        // Show first module by default
+        document.getElementById('m1').style.display = 'block';
+        
+        function showModule(moduleId) {
+            // Hide all modules
+            document.querySelectorAll('.module').forEach(module => {
+                module.style.display = 'none';
+            });
+            
+            // Show selected module
+            document.getElementById(moduleId).style.display = 'block';
+            window.scrollTo(0, 0); // Scroll to top when changing page
+        }
+    </script>
+</body>
+</html>
